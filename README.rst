@@ -1,8 +1,8 @@
 
 
-========================================================================================
+========================================================================
 Bioelectrics: Monodomain problem on a 2D domain with Noble 98 cell model
-========================================================================================
+========================================================================
 This example demonstrates solving a monodomain problem on a 2D domain using Noble 98 cell model passed as a .cellml model. The geometry is discretised with bilinear Lagrange finite elements with numberOfXElements in the X direction and numberOfYElements in the Y direction. The material parameters for the domain are controlled with the Am parameter for the cell membrane area, Cm for the membrane capacitance and conductivity for continuum conducticity.
 
 In this example, we demonstrate the varying a cellml parameter spatially over a domain eg. varying gNa radially.
@@ -18,7 +18,7 @@ Activate the openCMISS virtual environment for python bindings::
 Run the python script in parallel say 4 cores::
 
   cd ./src/Python/
-  mpirun -np 4 python monodomain_2D_vary_parameters_spatially.py
+  mpiexec -np 4 python monodomain_2D_vary_parameters_spatially.py
 
 Verifying the example
 =====================

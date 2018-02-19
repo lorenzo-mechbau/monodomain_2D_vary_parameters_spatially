@@ -27,10 +27,10 @@ conductivity = 0.1 #mS.mm^-1
 # Simulation parameters
 stimValue = 100.0
 stimStop = 0.1 #ms
-timeStop = 1.0 #ms
+timeStop = 3.0 #ms
 odeTimeStep = 0.00001 #ms
 pdeTimeStep = 0.001 #ms
-outputFrequency = 10 
+outputFrequency = 500 
 #DOC-END parameters
 
 #Setup field number handles
@@ -161,16 +161,16 @@ materialsField.ComponentValuesInitialise(iron.FieldVariableTypes.U,iron.FieldPar
 
 # Read the cellml file either as an argument (useful for testing) or hardcoded text.
 if len(sys.argv) > 1:
-	cellmlFile = sys.argv[1]
+	cellmlModel = sys.argv[1]
 else:
-	cellmlFile = "n98.xml"
+	cellmlModel = "n98.xml"
 
 #DOC-START create cellml environment
 # Create the CellML environment
 cellML = iron.CellML()
 cellML.CreateStart(cellMLUserNumber, region)
 # Import the cell model from a file
-cellModel = cellML.ModelImport(cellmlFile)
+cellModel = cellML.ModelImport(cellmlModel)
 #DOC-END create cellml environment
 
 #DOC-START flag variables

@@ -1,6 +1,6 @@
-$dt=10;                       # frequency
+$dt=500;                       # frequency
 
-$steps=900;                  # number of time steps
+$steps=3000;                  # number of time steps
 $cores=4;                      # number of processors
 
 $w=100;                        # width of the graphical window
