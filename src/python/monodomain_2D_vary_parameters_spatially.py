@@ -57,6 +57,13 @@ cellMLStateFieldUserNumber = 7
 cellMLParametersFieldUserNumber = 8
 cellMLIntermediateFieldUserNumber = 9
 
+# Set the OpenCMISS random seed so that we can test this example by using the
+# same parallel decomposition
+numberOfRandomSeeds = iron.RandomSeedsSizeGet()
+randomSeeds = [0]*numberOfRandomSeeds
+randomSeeds[0] = 100
+iron.RandomSeedsSet(randomSeeds)
+
 #DOC-START parallel information
 # Get the number of computational nodes and this computational node number
 numberOfComputationalNodes = iron.ComputationalNumberOfNodesGet()
