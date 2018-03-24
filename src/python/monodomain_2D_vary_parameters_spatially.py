@@ -341,14 +341,6 @@ for node in range(1,numberOfXElements/2):
 #Set the time loop from stimStop to timeStop
 controlLoop.TimesSet(stimStop,timeStop,pdeTimeStep)
 
-
-# Export the results, here we export them as standard exnode, exelem files
-fields = iron.Fields()
-fields.CreateRegion(region)
-fields.NodesExport("Monodomain1","FORTRAN")
-fields.ElementsExport("Monodomain1","FORTRAN")
-fields.Finalise()
-
 # Now solve the problem from stim stop until time stop
 problem.Solve()
 
