@@ -33,3 +33,5 @@ gfx modify spectrum default linear reverse range -95.0 50.0 extend_above extend_
 gfx modify spectrum default linear reverse range -95.0 50.0 banded number_of_bands 10 band_ratio 0.05 component 1;
 gfx modify g_element Region lines material black;
 gfx modify g_element Region surfaces select_on coordinate coordinates material default data Vm spectrum default;
+
+gfx create time_editor
