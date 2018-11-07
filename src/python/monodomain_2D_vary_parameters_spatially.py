@@ -11,6 +11,15 @@ random.seed(100)
 from opencmiss.iron import iron
 #DOC-END imports
 
+# Path from command line argument or cd
+# Arg1: Absolute path to .xml file directory
+# Arg2: name of .xml file
+# Default: n98.xml in same directory
+if len(sys.argv) > 1:
+    file_root_directory = sys.argv[1]
+else:
+    file_root_directory = os.path.dirname(__file__)
+
 # Set problem parameters
 #DOC-START parameters
 # 2D domain size
@@ -66,9 +75,11 @@ iron.RandomSeedsSet(randomSeeds)
 
 #DOC-START parallel information
 # Get the number of computational nodes and this computational node number
-computationEnvironment = iron.ComputationEnvironment()
-numberOfComputationalNodes = computationEnvironment.NumberOfWorldNodesGet()
-computationalNodeNumber = computationEnvironment.WorldNodeNumberGet()
+#computationEnvironment = iron.ComputationEnvironment()
+#numberOfComputationalNodes = computationEnvironment.NumberOfWorldNodesGet()
+#computationalNodeNumber = computationEnvironment.WorldNodeNumberGet()
+numberOfComputationalNodes = iron.ComputationalNumberOfNodesGet()
+computationalNodeNumber = iron.ComputationalNodeNumberGet()
 #DOC-END parallel information
 
 #DOC-START initialisation
@@ -168,10 +179,12 @@ materialsField.ComponentValuesInitialise(iron.FieldVariableTypes.U,iron.FieldPar
 #DOC-END equations set fields
 
 # Read the cellml file either as an argument (useful for testing) or hardcoded text.
-if len(sys.argv) > 1:
-	cellmlModel = sys.argv[1]
+if len(sys.argv) > 2:
+	cellmlModel_fileName = str(sys.argv[2])
 else:
-	cellmlModel = "n98.xml"
+	cellmlModel_fileName = "n98.xml"
+
+cellmlModel = os.path.join(file_root_directory, cellmlModel_fileName)
 
 #DOC-START create cellml environment
 # Create the CellML environment
@@ -351,3 +364,6 @@ fields.CreateRegion(region)
 fields.NodesExport("Monodomain","FORTRAN")
 fields.ElementsExport("Monodomain","FORTRAN")
 fields.Finalise()
+
+# Finalise OpenCMISS-Iron
+iron.Finalise()
